@@ -1,0 +1,45 @@
+From c5e6b092764be2bbe668897fca7d977d5cbba57c Mon Sep 17 00:00:00 2001
+From: Monsta <monsta@inbox.ru>
+Date: Tue, 16 Dec 2014 18:18:14 +0300
+Subject: [PATCH] mate-screenshot: show the actual error message when UI load
+ fails
+
+---
+ mate-screenshot/screenshot-dialog.c | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
+
+--- a/mate-screenshot/screenshot-dialog.c
++++ b/mate-screenshot/screenshot-dialog.c
+@@ -211,6 +211,7 @@
+   gint pos;
+   GFile *tmp_file;
+   GFile *parent_file;
++  GError *error = NULL;
+   guint res;
+ 
+   tmp_file = g_file_new_for_uri (initial_uri);
+@@ -223,8 +224,8 @@
+ 
+   dialog = g_new0 (ScreenshotDialog, 1);
+ 
+-  dialog-> ui = gtk_builder_new ();
+-  res = gtk_builder_add_from_file (dialog->ui, UIDIR "/mate-screenshot.ui", NULL);
++  dialog->ui = gtk_builder_new ();
++  res = gtk_builder_add_from_file (dialog->ui, UIDIR "/mate-screenshot.ui", &error);
+   dialog->screenshot = screenshot;
+ 
+   if (res == 0)
+@@ -233,9 +234,11 @@
+       dialog = gtk_message_dialog_new (NULL, 0,
+ 				       GTK_MESSAGE_ERROR,
+ 				       GTK_BUTTONS_OK,
+-				       _("UI definition file for the screenshot program is missing.\n"
+-					 "Please check your installation of mate-utils"));
++				       _("Error loading UI definition file for the screenshot program: \n%s\n\n"
++				         "Please check your installation of mate-utils."), error->message);
+       gtk_dialog_run (GTK_DIALOG (dialog));
++
++      g_error_free (error);
+       gtk_widget_destroy (dialog);
+       exit (1);
+     }

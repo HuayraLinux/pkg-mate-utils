@@ -1,0 +1,85 @@
+mate-utils (1.8.1+dfsg1-2+deb8u1~huayra1) torbellino; urgency=medium
+
+  * debian/patches:
+   + 0003_incress_interactive_timeout.patch 
+
+ -- Matias De lellis <mati86dl@gmail.com>  Wed, 28 Sep 2016 11:01:25 -0300
+
+mate-utils (1.8.1+dfsg1-2+deb8u1) jessie-proposed-updates; urgency=medium
+
+  * debian/patches:
+    + Add 0002_fix-errmsg-text.patch. Show actual error message if loading of the
+      mate-screenshot UI fails. (Closes: #783162).
+    + Update 2001_omit-gfdl-licensed-help-files.patch to avoid patch fuzziness.
+
+ -- Mike Gabriel <sunweaver@debian.org>  Mon, 11 May 2015 09:59:43 +0200
+
+mate-utils (1.8.1+dfsg1-2) unstable; urgency=medium
+
+  * debian/patches:
+    + Add 0001_mate-dictionary-fix-double-free-error.patch. Avoid crashes of
+      mate-dictionary due to double-free error. (Closes: #779856).
+
+ -- Mike Gabriel <sunweaver@debian.org>  Mon, 09 Mar 2015 09:15:06 +0100
+
+mate-utils (1.8.1+dfsg1-1) unstable; urgency=medium
+
+  [ Vangelis Mouhtsis ]
+  * debian/control:
+    + Bump Standards: to 3.9.6. No changes needed.
+
+  [ Mike Gabriel ]
+  * New upstream release.
+  * debian/copyright:
+    + Really mention all files. Drop information for not-anymore-existing
+      files.
+  * debian/patches:
+    + Drop debian/patches/0001_symlink-mate-panel-screenshot.patch. Included
+      in this upstream release.
+    + Drop debian/patches/1001_add-keywords-key-to-desktop-files.patch.
+      Accepted upstream.
+    + Drop debian/patches/1002_fix-hyphens-on-man-page.patch. Accepted upstream.
+  * debian/rules:
+    + Use upstream's NEWS file as upstream ChangeLog.
+
+ -- Mike Gabriel <sunweaver@debian.org>  Fri, 24 Oct 2014 13:26:33 +0200
+
+mate-utils (1.8.0+dfsg1-4) unstable; urgency=low
+
+  * debian/control:
+    + Add more Breaks:/Replaces: for internal bin:packages to make upgrade
+      from MATE upstream .deb repo as smooth as possible. (Closes: #747414).
+  * debian/patches:
+    + Add patch description header for
+      0001_symlink-mate-panel-screenshot.patch.
+
+ -- Mike Gabriel <sunweaver@debian.org>  Wed, 14 May 2014 16:57:22 +0200
+
+mate-utils (1.8.0+dfsg1-3) unstable; urgency=low
+
+  * debian/rules:
+    + Fix FTBFS on binary-only builds introduced by last package upload.
+
+ -- Mike Gabriel <sunweaver@debian.org>  Thu, 08 May 2014 13:59:14 +0200
+
+mate-utils (1.8.0+dfsg1-2) unstable; urgency=low
+
+  [ Mike Gabriel ]
+  * debian/rules:
+    + Fix typo in tarball repacking code.
+    + Remove .la files before running dh_install.
+  * debian/patches:
+    + Add 0001_symlink-mate-panel-screenshot.patch. Symlink man page via
+      Makefile, not via dh_link.
+
+  [ Vangelis Mouhtsis ]
+  * debian/rules:
+    + Replace on dh_install --list-missing -> --fail-missing.
+
+ -- Mike Gabriel <sunweaver@debian.org>  Mon, 05 May 2014 15:39:53 +0200
+
+mate-utils (1.8.0+dfsg1-1) unstable; urgency=low
+
+  * Initial release. (Closes: #734990).
+
+ -- Mike Gabriel <sunweaver@debian.org>  Fri, 25 Apr 2014 12:27:19 +0200

@@ -1,0 +1,34 @@
+From 65abdedc9a09e8152ffa4de442b47082e76ff49d Mon Sep 17 00:00:00 2001
+From: Monsta <monsta@inbox.ru>
+Date: Wed, 17 Dec 2014 12:47:48 +0300
+Subject: [PATCH] mate-dictionary: don't free GError more than once
+
+because that error dialog function frees it already
+---
+ mate-dictionary/src/gdict-source-dialog.c | 1 -
+ mate-dictionary/src/gdict-window.c        | 1 -
+ 2 files changed, 2 deletions(-)
+
+diff --git a/mate-dictionary/src/gdict-source-dialog.c b/mate-dictionary/src/gdict-source-dialog.c
+index 3468011..792677d 100644
+--- a/mate-dictionary/src/gdict-source-dialog.c
++++ b/mate-dictionary/src/gdict-source-dialog.c
+@@ -477,7 +477,6 @@ gdict_source_dialog_response_cb (GtkDialog *dialog,
+           gdict_show_gerror_dialog (GTK_WINDOW (dialog),
+           			    _("There was an error while displaying help"),
+           		 	    err);
+-          g_error_free (err);
+         }
+ 
+       /* we don't want the dialog to close itself */
+diff --git a/mate-dictionary/src/gdict-window.c b/mate-dictionary/src/gdict-window.c
+index 58eae2e..01679ff 100644
+--- a/mate-dictionary/src/gdict-window.c
++++ b/mate-dictionary/src/gdict-window.c
+@@ -1242,7 +1242,6 @@ gdict_window_cmd_help_contents (GtkAction   *action,
+       gdict_show_gerror_dialog (GTK_WINDOW (window),
+       		                _("There was an error while displaying help"),
+       			        err);
+-      g_error_free (err);
+     }
+ }
