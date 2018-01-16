@@ -1,3 +1,9 @@
+mate-utils (1.8.1+dfsg1-2+deb8u1+huayra1) torbellino; urgency=medium
+
+  * Fix version number.
+
+ -- Matias De lellis <mati86dl@gmail.com>  Mon, 15 Jan 2018 14:39:20 -0300
+
 mate-utils (1.8.1+dfsg1-2+deb8u1~huayra1) torbellino; urgency=medium
 
   * debian/patches:
